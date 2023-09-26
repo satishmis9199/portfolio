@@ -165,7 +165,7 @@ section .title::after{
 /* home section styling */
 .home{
     display: flex;
-    background: url("https://static.theprint.in/wp-content/uploads/2020/08/WhatsApp-Image-2020-08-02-at-3.48.16-PM-e1596533752265.jpeg") no-repeat center;
+    background: url("https://th.bing.com/th/id/OIG.XyTZTPa4g6n0lzZnwNND?w=270&h=270&c=6&r=0&o=5&pid=ImgGn") no-repeat center;
     height: 100vh;
     color:black;
     min-height: 500px;
