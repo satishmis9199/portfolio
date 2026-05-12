@@ -336,4 +336,4 @@ function initSmoothLinks() {
       }
     });
   });
-        }
+}
