@@ -12,11 +12,16 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => { loaderFill.style.width = '100%'; }, 100);
 
   // Hide loader after fill completes
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    document.body.style.overflow = '';
+setTimeout(() => {
+  loader.classList.add('hidden');
+  document.body.style.overflow = '';
+
+  try {
     initAll();
-  }, 2200);
+  } catch (e) {
+    console.error(e);
+  }
+}, 2200);
 
   document.body.style.overflow = 'hidden';
 });
@@ -69,6 +74,7 @@ function initCursor() {
 // ─── PARTICLE CANVAS ────────────────────────────
 function initParticles() {
   const canvas = document.getElementById('particleCanvas');
+   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [], mouse = { x: -1000, y: -1000 };
   const COUNT = 80;
