@@ -11,7 +11,7 @@
 /* ═══════════════════════════════════════════════════
    VARIABLES & RESET
 ═══════════════════════════════════════════════════ */
-:root { 
+:root {
   --ease: cubic-bezier(0.4,0,0.2,1);
 
   /* DARK THEME (default) */
@@ -107,27 +107,49 @@ body.no-cursor .cur { display:none; }
 ═══════════════════════════════════════════════════ */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:9000;
-  padding:22px 0;
+  padding:16px 0;
   transition:all 0.4s var(--ease);
 }
 nav.scrolled {
   background:var(--nav-bg);
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
-  padding:14px 0;
+  padding:10px 0;
 }
-.nav-wrap { max-width:1280px; margin:0 auto; padding:0 48px; display:flex; align-items:center; gap:0; }
+.nav-wrap{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 32px;
+
+  display:grid;
+  grid-template-columns:auto 1fr auto auto;
+  align-items:center;
+
+  gap:24px;
+}
 .nav-logo {
   font-family:'JetBrains Mono', monospace;
-  font-size:1.15rem; font-weight:700;
-  letter-spacing:0.05em; margin-right:auto;
-  display:flex; align-items:center; gap:3px;
+  font-size:1.15rem;
+  font-weight:700;
+  letter-spacing:0.05em;
+  display:flex;
+  align-items:center;
+  gap:3px;
+
+  white-space:nowrap;
 }
 .nav-logo .dot { color:var(--accent); font-size:1.4rem; line-height:1; }
-.nav-links { display:flex; gap:36px; margin-right:32px; }
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-right:20px;
+  flex-wrap:nowrap;
+
+}
 .nav-links a {
   font-family:'JetBrains Mono', monospace;
-  font-size:0.76rem; color:var(--text2);
+ font-size:0.72rem; color:var(--text2);
   letter-spacing:0.06em; text-transform:uppercase;
   position:relative; transition:color 0.3s;
 }
@@ -140,12 +162,22 @@ nav.scrolled {
 .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
 
 /* Theme Toggle */
-.theme-btn {
-  width:44px; height:24px;
-  background:var(--card); border:1.5px solid var(--border);
-  border-radius:100px; position:relative;
-  transition:all 0.4s var(--ease); margin-right:16px;
-  display:flex; align-items:center; padding:2px;
+.theme-btn{
+  width:44px;
+  height:24px;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:100px;
+  position:relative;
+  transition:all 0.4s var(--ease);
+  margin-right:16px;
+  display:flex;
+  align-items:center;
+  padding:2px;
+
+  cursor:pointer !important;
+  pointer-events:auto !important;
+  z-index:100000;
 }
 .theme-btn::before {
   content:''; display:block;
@@ -160,9 +192,10 @@ nav.scrolled {
 .theme-icon.moon { left:5px; color:var(--text3); }
 
 .nav-cv {
+white-space:nowrap;
   font-family:'JetBrains Mono', monospace;
-  font-size:0.76rem; font-weight:700;
-  padding:9px 22px;
+  font-size:0.7rem; font-weight:700;
+  padding:8px 16px;
   border:1.5px solid var(--accent);
   border-radius:8px; color:var(--accent);
   letter-spacing:0.06em; text-transform:uppercase;
@@ -811,6 +844,18 @@ footer {
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media(max-width:1100px){
+.nav-links{
+  gap:16px;
+}
+
+.nav-links a{
+  font-size:0.68rem;
+}
+
+.nav-cv{
+  padding:8px 14px;
+  font-size:0.65rem;
+}
   .skills-grid{grid-template-columns:repeat(2,1fr);}
   .proj-grid{grid-template-columns:repeat(2,1fr);}
   .proj-c.featured{grid-column:span 2;}
@@ -822,6 +867,10 @@ footer {
   .burger{display:flex;}
   .contact-grid{grid-template-columns:1fr;}
   .f-row{grid-template-columns:1fr;}
+.nav-wrap{
+  padding:0 20px;
+justify-content:space-between;
+}
 }
 @media(max-width:700px){
   .wrap{padding:0 24px;}
@@ -880,7 +929,7 @@ footer {
       <i class="fas fa-moon theme-icon moon"></i>
       <i class="fas fa-sun theme-icon sun"></i>
     </button>
-    <a href="https://drive.google.com/file/d/1_c_DnTHLIu3gbJkiB-MDBI1jEvQvnGKM/view" target="_blank" class="nav-cv">
+    <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="nav-cv">
       Resume <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
     <button class="burger" id="burger" aria-label="Menu">
@@ -932,7 +981,7 @@ footer {
     <div class="hero-actions">
       <a href="#contact" class="btn-p">Let's Connect <i class="fas fa-arrow-right"></i></a>
       <a href="#projects" class="btn-g">View Projects <i class="fas fa-code"></i></a>
-      <a href="https://drive.google.com/file/d/1_c_DnTHLIu3gbJkiB-MDBI1jEvQvnGKM/view" target="_blank" class="btn-g">Download CV <i class="fas fa-download"></i></a>
+      <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="btn-g">Download CV <i class="fas fa-download"></i></a>
     </div>
     <div class="hero-stats">
       <div class="hstat">
@@ -1013,8 +1062,8 @@ footer {
         </div>
         <div class="socials-row">
           <a href="https://github.com/satishmis9199" target="_blank" class="soc-btn"><i class="fab fa-github"></i> GitHub</a>
-          <a href="#" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-          <a href="#" target="_blank" class="soc-btn"><i class="fas fa-terminal"></i> LeetCode</a>
+          <a href="https://www.linkedin.com/in/satish-kumar-mishra-9913a2232/?skipRedirect=true" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/satishmis9199" target="_blank" class="soc-btn"><i class="fas fa-terminal"></i> LeetCode</a>
         </div>
         <div class="edu-box" style="margin-top:28px;" data-reveal="up">
           <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -1136,7 +1185,7 @@ footer {
 
       <div class="tl-item" data-reveal="up">
         <div class="tl-dot"></div>
-        <div class="tl-meta">Jun 2025 — Present</div>
+        <div class="tl-meta">May 2025 — Present</div>
         <div class="tl-card">
           <div class="tl-head">
             <div>
@@ -1194,6 +1243,11 @@ footer {
 <!-- ╔══════════════════════════╗
      ║        PROJECTS          ║
      ╚══════════════════════════╝ -->
+
+
+
+
+
 <section id="projects" class="section">
   <div class="wrap">
     <div class="sec-tag" data-reveal="left">Portfolio</div>
@@ -1237,19 +1291,59 @@ footer {
         </div>
       </div>
 
-      <div class="proj-c" data-reveal="up">
-        <div class="proj-top">
-          <div class="proj-icon"><i class="fas fa-microchip"></i></div>
-        </div>
-        <h3>Vehicle Theft Detection System</h3>
-        <p>
-          IoT-based security system that detects vehicle theft and automatically sends SMS alerts 
-          to the owner, who can remotely disable the ignition via SMS reply.
-        </p>
-        <div class="proj-tags">
-          <span>IoT</span><span>SMS API</span><span>Embedded C</span><span>Arduino</span>
-        </div>
-      </div>
+     
+
+
+
+
+
+
+
+
+<div class="proj-c featured" data-reveal="up">
+  <div class="proj-top">
+    <div class="proj-icon">
+      <i class="fas fa-users"></i>
+    </div>
+
+    <div class="proj-links">
+      <a href="https://github.com/satishmis9199" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+
+      <a href="https://socialhub-jjy2.onrender.com/" target="_blank" title="Live Demo">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+    </div>
+  </div>
+
+  <h3>SnapSphere — Social Media Platform</h3>
+
+  <p>
+    Full-stack social media platform built using Spring Boot, MySQL, JWT, Kafka, and Redis.
+    Features include authentication, posts, likes, comments, follow system, chat,
+    notifications, and real-time messaging with scalable backend architecture.
+  </p>
+
+  <div class="proj-tags">
+    <span>Spring Boot</span>
+    <span>JWT</span>
+    <span>Kafka</span>
+    <span>Redis</span>
+    <span>MySQL</span>
+    <span>REST APIs</span>
+    <span>Microservices</span>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
       <div class="proj-c" data-reveal="up">
         <div class="proj-top">
@@ -1628,6 +1722,7 @@ heroSection.addEventListener('mouseleave',()=>{
   document.querySelector('.hero-inner').style.transform='';
 });
 
+
 /* ══════════════════════════════════════════════
    COUNTER ANIMATION (stats)
 ══════════════════════════════════════════════ */
@@ -1658,5 +1753,7 @@ const sObs = new IntersectionObserver(entries=>{
 },{threshold:0.8});
 statNums.forEach(s=>sObs.observe(s));
 </script>
+
+
 </body>
 </html>
