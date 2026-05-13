@@ -100,12 +100,13 @@ button { cursor: none; font-family: inherit; }
 ═══════════════════════════════════════════════════ */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:9000;
-  padding:16px 0;
+  padding:14px 0;
   transition:all 0.4s var(--ease);
 }
 nav.scrolled {
   background:var(--nav-bg);
   backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
   padding:10px 0;
 }
@@ -113,25 +114,30 @@ nav.scrolled {
   max-width:1280px;
   margin:0 auto;
   padding:0 32px;
-  display:grid;
-  grid-template-columns:auto 1fr auto auto;
+  display:flex;
   align-items:center;
-  gap:24px;
+  justify-content:space-between;
+  gap:0;
 }
+/* Logo — always visible */
 .nav-logo {
   font-family:'JetBrains Mono', monospace;
   font-size:1.15rem; font-weight:700; letter-spacing:0.05em;
   display:flex; align-items:center; gap:3px; white-space:nowrap;
+  flex-shrink:0;
 }
 .nav-logo .dot { color:var(--accent); font-size:1.4rem; line-height:1; }
+
+/* Desktop links — middle */
 .nav-links {
-  display:flex; align-items:center; gap:22px; margin-right:20px; flex-wrap:nowrap;
+  display:flex; align-items:center; gap:20px; flex-wrap:nowrap;
+  margin:0 auto; padding:0 24px;
 }
 .nav-links a {
   font-family:'JetBrains Mono', monospace;
-  font-size:0.72rem; color:var(--text2);
+  font-size:0.7rem; color:var(--text2);
   letter-spacing:0.06em; text-transform:uppercase;
-  position:relative; transition:color 0.3s;
+  position:relative; transition:color 0.3s; white-space:nowrap;
 }
 .nav-links a::after {
   content:''; position:absolute; left:0; bottom:-4px;
@@ -140,12 +146,18 @@ nav.scrolled {
 }
 .nav-links a:hover, .nav-links a.active { color:var(--accent); }
 .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+
+/* Right side group */
+.nav-right {
+  display:flex; align-items:center; gap:12px; flex-shrink:0;
+}
+
+/* Theme toggle */
 .theme-btn {
-  width:44px; height:24px;
+  width:44px; height:24px; flex-shrink:0;
   background:var(--card); border:1.5px solid var(--border);
   border-radius:100px; position:relative;
   transition:all 0.4s var(--ease);
-  margin-right:16px;
   display:flex; align-items:center; padding:2px;
   cursor:pointer !important; pointer-events:auto !important; z-index:100000;
 }
@@ -160,8 +172,10 @@ nav.scrolled {
 .theme-icon { position:absolute; font-size:0.6rem; }
 .theme-icon.sun { right:5px; color:var(--text3); }
 .theme-icon.moon { left:5px; color:var(--text3); }
+
+/* Resume button */
 .nav-cv {
-  white-space:nowrap;
+  white-space:nowrap; flex-shrink:0;
   font-family:'JetBrains Mono', monospace;
   font-size:0.7rem; font-weight:700;
   padding:8px 16px;
@@ -171,27 +185,34 @@ nav.scrolled {
   display:flex; align-items:center; gap:8px;
 }
 .nav-cv:hover { background:var(--accent); color:var(--bg); box-shadow:0 0 24px var(--glow); }
+
+/* Hamburger — hidden on desktop */
 .burger {
-  display:none; flex-direction:column; gap:5px;
-  background:none; border:none; padding:4px;
+  display:none; flex-direction:column; justify-content:center; gap:5px;
+  background:none; border:none; padding:6px; flex-shrink:0;
+  cursor:pointer !important;
+  position:relative; z-index:9100;
 }
-.burger span { display:block; width:22px; height:1.5px; background:var(--text); transition:all 0.35s var(--ease); }
-.burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.burger span { display:block; width:24px; height:2px; background:var(--text); border-radius:2px; transition:all 0.35s var(--ease); }
+.burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
-.burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* Full-screen mobile nav */
 .mob-nav {
   position:fixed; inset:0; z-index:8999;
   background:var(--bg); display:flex;
-  flex-direction:column; align-items:center; justify-content:center; gap:40px;
-  clip-path:circle(0% at calc(100% - 60px) 40px);
+  flex-direction:column; align-items:center; justify-content:center; gap:36px;
+  clip-path:circle(0% at calc(100% - 44px) 36px);
   transition:clip-path 0.6s var(--ease);
+  pointer-events:none;
 }
-.mob-nav.open { clip-path:circle(150% at calc(100% - 60px) 40px); }
+.mob-nav.open { clip-path:circle(160% at calc(100% - 44px) 36px); pointer-events:auto; }
 .mob-nav a {
   font-family:'Bricolage Grotesque', sans-serif;
-  font-size:2.5rem; font-weight:800;
+  font-size:2.8rem; font-weight:800;
   color:var(--text2); transition:color 0.3s;
-  position:relative; overflow:hidden;
+  position:relative; overflow:hidden; line-height:1;
 }
 .mob-nav a::before {
   content:attr(data-text);
@@ -199,7 +220,13 @@ nav.scrolled {
   color:var(--accent); clip-path:inset(0 100% 0 0);
   transition:clip-path 0.4s var(--ease);
 }
-.mob-nav a:hover::before { clip-path:inset(0 0% 0 0); }
+.mob-nav a:hover::before, .mob-nav a:active::before { clip-path:inset(0 0% 0 0); }
+.mob-nav-bottom {
+  display:flex; align-items:center; gap:16px; margin-top:8px;
+}
+.mob-nav-bottom .nav-cv {
+  font-size:0.75rem; padding:10px 22px;
+}
 
 /* ═══════════════════════════════════════════════════
    HERO
@@ -721,9 +748,9 @@ footer {
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media(max-width:1100px){
-  .nav-links { gap:16px; }
-  .nav-links a { font-size:0.68rem; }
-  .nav-cv { padding:8px 14px; font-size:0.65rem; }
+  .nav-links { gap:14px; }
+  .nav-links a { font-size:0.66rem; }
+  .nav-cv { padding:7px 12px; font-size:0.65rem; }
   .skills-grid{grid-template-columns:repeat(2,1fr);}
   .proj-grid{grid-template-columns:repeat(2,1fr);}
   .proj-c.featured{grid-column:span 2;}
@@ -731,11 +758,13 @@ footer {
   .about-img-frame img{height:340px;}
 }
 @media(max-width:900px){
-  .nav-links,.nav-cv{display:none;}
-  .burger{display:flex;}
+  /* Hide desktop links & resume button, show burger */
+  .nav-links { display:none !important; }
+  .nav-right .nav-cv { display:none !important; }
+  .burger { display:flex !important; }
+  .nav-wrap { padding:0 20px; }
   .contact-grid{grid-template-columns:1fr;}
   .f-row{grid-template-columns:1fr;}
-  .nav-wrap{ padding:0 20px; justify-content:space-between; }
 }
 @media(max-width:700px){
   .wrap{padding:0 24px;}
@@ -747,18 +776,22 @@ footer {
   .hdiv{display:none;}
   footer{padding:40px 24px 32px;}
   .footer-wrap{flex-direction:column; align-items:flex-start;}
-  .nav-wrap{padding:0 24px;}
+  .nav-wrap{padding:0 18px;}
+  .mob-nav a { font-size:2.2rem; }
 }
 @media(max-width:480px){
   .skills-grid{grid-template-columns:1fr;}
-  .hero-name{font-size:3rem;}
+  .hero-name{font-size:2.8rem;}
   .hero-actions{flex-direction:column;}
   .btn-p,.btn-g{justify-content:center;}
   #back-top{bottom:20px; right:20px;}
+  .mob-nav a { font-size:1.9rem; }
+  .mob-nav { gap:28px; }
 }
 @media(hover:none){
-  .cur,#cur-ring{display:none;}
-  body{cursor:auto;}
+  .cur, #cur-ring { display:none !important; }
+  body { cursor:auto !important; }
+  button { cursor:pointer !important; }
 }
 </style>
 </head>
@@ -784,16 +817,18 @@ footer {
       <li><a href="#projects" data-link>Projects</a></li>
       <li><a href="#contact" data-link>Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
-      <i class="fas fa-moon theme-icon moon"></i>
-      <i class="fas fa-sun theme-icon sun"></i>
-    </button>
-    <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="nav-cv">
-      Resume <i class="fas fa-arrow-up-right-from-square"></i>
-    </a>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
+        <i class="fas fa-moon theme-icon moon"></i>
+        <i class="fas fa-sun theme-icon sun"></i>
+      </button>
+      <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="nav-cv">
+        Resume <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -805,12 +840,12 @@ footer {
   <a href="#experience" data-text="Experience">Experience</a>
   <a href="#projects" data-text="Projects">Projects</a>
   <a href="#contact" data-text="Contact">Contact</a>
-  <div style="display:flex;gap:16px;margin-top:16px;">
+  <div class="mob-nav-bottom">
     <button class="theme-btn" id="themeBtn2" aria-label="Toggle theme">
       <i class="fas fa-moon theme-icon moon"></i>
       <i class="fas fa-sun theme-icon sun"></i>
     </button>
-    <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="nav-cv">Resume</a>
+    <a href="https://drive.google.com/file/d/1PAkor0j7j6rEc_pxyHBrvaJ1Ye8whNfK/view?usp=sharing" target="_blank" class="nav-cv">Resume <i class="fas fa-arrow-up-right-from-square"></i></a>
   </div>
 </div>
 
@@ -1343,18 +1378,19 @@ window.addEventListener('scroll',()=>{
 ══════════════════════════════════════════════ */
 const burger = document.getElementById('burger');
 const mobNav = document.getElementById('mobNav');
-burger.addEventListener('click',()=>{
+function closeMobNav(){
+  burger.classList.remove('open');
+  mobNav.classList.remove('open');
+  document.body.style.overflow='';
+}
+burger.addEventListener('click', e=>{
+  e.stopPropagation();
   burger.classList.toggle('open');
   mobNav.classList.toggle('open');
   document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
 });
-mobNav.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    burger.classList.remove('open');
-    mobNav.classList.remove('open');
-    document.body.style.overflow='';
-  });
-});
+mobNav.querySelectorAll('a').forEach(a=>{ a.addEventListener('click', closeMobNav); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMobNav(); });
 
 /* ══════════════════════════════════════════════
    SMOOTH SCROLL
@@ -1549,4 +1585,4 @@ const sObs = new IntersectionObserver(entries=>{
 statNums.forEach(s=>sObs.observe(s));
 </script>
 </body>
-                                                                            </html>
+   </html>
