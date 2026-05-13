@@ -1,416 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Satish Kumar Mishra — Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satish Kumar Mishra — Java Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
 
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <div class="loader-text">
-      <span>S</span><span>A</span><span>T</span><span>I</span><span>S</span><span>H</span>
-    </div>
-    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
-  </div>
+  <!-- Grain Noise Overlay -->
+  <div class="grain"></div>
 
-  <!-- Particle Canvas -->
-  <canvas id="particleCanvas"></canvas>
-
-  <!-- NAV -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-    <div class="nav-logo">S<span>.</span></div>
-    <ul class="nav-links">
-      <li><a href="#hero" class="nav-link" data-text="Home">Home</a></li>
-      <li><a href="#skills" class="nav-link" data-text="Skills">Skills</a></li>
-      <li><a href="#experience" class="nav-link" data-text="Experience">Experience</a></li>
-      <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
-      <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
-    </ul>
-    <a href="https://drive.google.com/file/d/1_c_DnTHLIu3gbJkiB-MDBI1jEvQvnGKM/view" target="_blank" class="nav-resume">Resume <i class="fa fa-arrow-up-right-from-square"></i></a>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>SKM<span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active"><span class="nav-num">01.</span>Home</a></li>
+        <li><a href="#about" class="nav-link"><span class="nav-num">02.</span>About</a></li>
+        <li><a href="#experience" class="nav-link"><span class="nav-num">03.</span>Experience</a></li>
+        <li><a href="#skills" class="nav-link"><span class="nav-num">04.</span>Skills</a></li>
+        <li><a href="#projects" class="nav-link"><span class="nav-num">05.</span>Projects</a></li>
+        <li><a href="#contact" class="nav-link"><span class="nav-num">06.</span>Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#hero" class="mobile-link">Home</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#experience" class="mobile-link">Experience</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
-  </div>
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-text">JAVA</div>
-    <div class="hero-content">
-      <div class="hero-badge reveal-up">
-        <span class="pulse-dot"></span>
-        Available for opportunities
-      </div>
-      <h1 class="hero-name reveal-up" style="animation-delay:0.1s">
-        Satish<br /><em>Kumar</em> Mishra
-      </h1>
-      <p class="hero-role reveal-up" style="animation-delay:0.2s">
-        Java Backend Developer · <span id="typedText"></span><span class="typed-cursor">|</span>
-      </p>
-      <p class="hero-desc reveal-up" style="animation-delay:0.3s">
-        Building high-performance microservices, event-driven systems with Kafka, and cloud-native APIs. Currently at <strong>TCS</strong>, Bangalore.
-      </p>
-      <div class="hero-actions reveal-up" style="animation-delay:0.4s">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-outline">Let's Talk</a>
-      </div>
-      <div class="hero-social reveal-up" style="animation-delay:0.5s">
-        <a href="https://github.com/satishmis9199" target="_blank" class="social-icon-link" title="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/satish-kumar-mishra-9913a2232" target="_blank" class="social-icon-link" title="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="https://socialhub-jjy2.onrender.com/user/dashboard" target="_blank" class="social-icon-link" title="SocialHub">
-          <i class="fa-solid fa-globe"></i>
-        </a>
-        <a href="mailto:satishmis9199@gmail.com" class="social-icon-link" title="Email">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-    <div class="hero-visual reveal-right" style="animation-delay:0.3s">
-      <div class="avatar-ring">
-        <div class="avatar-ring-inner">
-          <img src="https://erp.psit.ac.in/assets/img/Simages/28763.jpg" alt="Satish Kumar Mishra" class="avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Satish+Kumar+Mishra&size=300&background=7c6dfa&color=fff&bold=true'" />
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <canvas id="matrixCanvas"></canvas>
+    <div class="hero-glow"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-tag reveal-up" style="--d:0.1s">
+          <span class="pulse-dot"></span> Open to Work — Bangalore, IN
         </div>
-        <svg class="ring-svg" viewBox="0 0 300 300">
-          <circle cx="150" cy="150" r="140" fill="none" stroke="url(#ringGrad)" stroke-width="1.5" stroke-dasharray="8 6" />
-          <defs>
-            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7c6dfa" />
-              <stop offset="100%" stop-color="#fa6d8e" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <!-- floating badges -->
-        <div class="float-badge badge-java">☕ Java</div>
-        <div class="float-badge badge-kafka">📨 Kafka</div>
-        <div class="float-badge badge-aws">☁️ AWS</div>
-        <div class="float-badge badge-spring">🍃 Spring</div>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item reveal-up">
-        <div class="stat-number" data-target="2">0</div>
-        <div class="stat-plus">+</div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-      <div class="stat-item reveal-up" style="animation-delay:0.1s">
-        <div class="stat-number" data-target="40">0</div>
-        <div class="stat-plus">%</div>
-        <div class="stat-label">API Latency Reduced</div>
-      </div>
-      <div class="stat-item reveal-up" style="animation-delay:0.2s">
-        <div class="stat-number" data-target="30">0</div>
-        <div class="stat-plus">%</div>
-        <div class="stat-label">Performance Boost</div>
-      </div>
-      <div class="stat-item reveal-up" style="animation-delay:0.3s">
-        <div class="stat-number" data-target="10">0</div>
-        <div class="stat-plus">+</div>
-        <div class="stat-label">Technologies</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section" id="skills">
-    <div class="section-header reveal-up">
-      <span class="section-label">Tech Stack</span>
-      <h2 class="section-title">What I Work With</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal-up" style="animation-delay:0s">
-        <div class="skill-card-icon">☕</div>
-        <div class="skill-card-name">Java 8+</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="92"></div></div>
-        <div class="skill-pct">92%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.05s">
-        <div class="skill-card-icon">🍃</div>
-        <div class="skill-card-name">Spring Boot</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div>
-        <div class="skill-pct">90%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.1s">
-        <div class="skill-card-icon">📨</div>
-        <div class="skill-card-name">Apache Kafka</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="82"></div></div>
-        <div class="skill-pct">82%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.15s">
-        <div class="skill-card-icon">⚡</div>
-        <div class="skill-card-name">Redis</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div>
-        <div class="skill-pct">80%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.2s">
-        <div class="skill-card-icon">🗄️</div>
-        <div class="skill-card-name">MySQL</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div>
-        <div class="skill-pct">80%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.25s">
-        <div class="skill-card-icon">☁️</div>
-        <div class="skill-card-name">AWS</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div>
-        <div class="skill-pct">65%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.3s">
-        <div class="skill-card-icon">🐳</div>
-        <div class="skill-card-name">Docker</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="60"></div></div>
-        <div class="skill-pct">60%</div>
-      </div>
-      <div class="skill-card reveal-up" style="animation-delay:0.35s">
-        <div class="skill-card-icon">🔗</div>
-        <div class="skill-card-name">REST APIs</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" data-width="93"></div></div>
-        <div class="skill-pct">93%</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="section" id="experience">
-    <div class="section-header reveal-up">
-      <span class="section-label">Career</span>
-      <h2 class="section-title">Experience</h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item reveal-left">
-        <div class="timeline-dot accent"></div>
-        <div class="timeline-body">
-          <div class="tl-top">
-            <div>
-              <div class="tl-role">Java Backend Developer</div>
-              <div class="tl-company">Tata Consultancy Services (TCS)</div>
-            </div>
-            <div class="tl-date">Jun 2025 — Present</div>
-          </div>
-          <ul class="tl-list">
-            <li>Designed scalable microservices with Spring Boot & REST APIs handling concurrent users</li>
-            <li>Implemented Kafka event-driven architecture for async workflows</li>
-            <li>Integrated Redis caching — reduced API latency by <strong>40%</strong></li>
-            <li>Optimized SQL queries, joins & indexing for high-performance data access</li>
-            <li>Deployed and monitored on AWS (EC2, S3, IAM) with CI/CD via Jenkins</li>
-          </ul>
-          <div class="tl-tags">
-            <span>Spring Boot</span><span>Kafka</span><span>Redis</span><span>AWS</span><span>Microservices</span><span>Jenkins</span>
-          </div>
+        <h1 class="hero-name reveal-up" style="--d:0.25s">
+          <span>Satish</span>
+          <span class="accent-name">Kumar</span>
+          <span>Mishra</span>
+        </h1>
+        <div class="hero-role reveal-up" style="--d:0.4s">
+          <span class="role-slash">// </span><span id="typedText"></span><span class="blink-cur">▋</span>
         </div>
-      </div>
-      <div class="timeline-item reveal-left" style="animation-delay:0.15s">
-        <div class="timeline-dot accent2"></div>
-        <div class="timeline-body">
-          <div class="tl-top">
-            <div>
-              <div class="tl-role">Backend Developer Intern</div>
-              <div class="tl-company">Freelance — Turing Platform</div>
-            </div>
-            <div class="tl-date">Sep 2023 — May 2025</div>
-          </div>
-          <ul class="tl-list">
-            <li>Built Order Management System using Spring Boot microservices architecture</li>
-            <li>Implemented JWT-based authentication with Spring Security</li>
-            <li>Improved API performance by <strong>30%</strong> through caching & query optimization</li>
-            <li>Integrated MySQL with JPA/Hibernate and optimized database queries</li>
-            <li>Used Kafka for inter-service communication improving scalability</li>
-          </ul>
-          <div class="tl-tags">
-            <span>JWT</span><span>Hibernate</span><span>MySQL</span><span>Kafka</span><span>Spring Security</span><span>JPA</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects">
-    <div class="section-header reveal-up">
-      <span class="section-label">Work</span>
-      <h2 class="section-title">Projects</h2>
-    </div>
-    <div class="projects-grid">
-
-      <div class="project-card reveal-up" style="animation-delay:0s">
-        <div class="project-card-inner">
-          <div class="project-num">01</div>
-          <div class="project-icon-wrap">🛍️</div>
-          <h3 class="project-title">E-Commerce Backend</h3>
-          <p class="project-desc">Product catalog, cart, and order services built with Spring Boot & REST APIs. Transactional consistency with secure JWT authentication.</p>
-          <div class="project-tags">
-            <span>Spring Boot</span><span>MySQL</span><span>JWT</span><span>REST API</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/satishmis9199" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-glow"></div>
-      </div>
-
-      <div class="project-card reveal-up" style="animation-delay:0.1s">
-        <div class="project-card-inner">
-          <div class="project-num">02</div>
-          <div class="project-icon-wrap">🔔</div>
-          <h3 class="project-title">Real-Time Notifications</h3>
-          <p class="project-desc">Kafka-based real-time notification system with event-driven architecture ensuring fault tolerance and high scalability.</p>
-          <div class="project-tags">
-            <span>Kafka</span><span>Spring Boot</span><span>Redis</span><span>WebSocket</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/satishmis9199" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-glow"></div>
-      </div>
-
-      <div class="project-card reveal-up featured" style="animation-delay:0.2s">
-        <div class="project-card-inner">
-          <div class="project-num">03</div>
-          <div class="featured-badge">🌟 Live</div>
-          <div class="project-icon-wrap">🌐</div>
-          <h3 class="project-title">SocialHub</h3>
-          <p class="project-desc">A fully deployed social platform with user dashboards, social interactions, and a scalable backend. Live and running on Render.</p>
-          <div class="project-tags">
-            <span>Full Stack</span><span>Deployed</span><span>Social</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/satishmis9199" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
-            <a href="https://socialhub-jjy2.onrender.com/user/dashboard" target="_blank" class="live-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-          </div>
-        </div>
-        <div class="project-glow glow-pink"></div>
-      </div>
-
-      <div class="project-card reveal-up" style="animation-delay:0.3s">
-        <div class="project-card-inner">
-          <div class="project-num">04</div>
-          <div class="project-icon-wrap">🚗</div>
-          <h3 class="project-title">Vehicle Theft Detection</h3>
-          <p class="project-desc">IoT system detecting vehicle theft and auto-sending SMS alerts to owner who can remotely disable the vehicle ignition.</p>
-          <div class="project-tags">
-            <span>IoT</span><span>Embedded</span><span>SMS API</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/satishmis9199" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-glow"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="section-header reveal-up">
-      <span class="section-label">Connect</span>
-      <h2 class="section-title">Get in Touch</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-left reveal-left">
-        <p class="contact-intro">
-          Looking for a backend engineer who cares about performance, clean architecture, and real impact? Let's build something great together.
+        <p class="hero-desc reveal-up" style="--d:0.55s">
+          Software Engineer with <strong>2+ years</strong> building scalable microservices, Kafka event-driven architectures, and high-performance REST APIs. Reduced API latency by <strong>40%</strong> with Redis at TCS.
         </p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="contact-item-label">Email</div>
-              <a href="mailto:satishmis9199@gmail.com" class="contact-item-value">satishmis9199@gmail.com</a>
-            </div>
+        <div class="hero-btns reveal-up" style="--d:0.7s">
+          <a href="#contact" class="btn btn-primary"><span>Let's Connect</span><i class="fas fa-arrow-right"></i></a>
+          <a href="https://drive.google.com/file/d/1_c_DnTHLIu3gbJkiB-MDBI1jEvQvnGKM/view" target="_blank" class="btn btn-ghost"><span>Download CV</span><i class="fas fa-download"></i></a>
+        </div>
+        <div class="hero-socials reveal-up" style="--d:0.85s">
+          <a href="https://linkedin.com" target="_blank" class="soc-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/satishmis9199" target="_blank" class="soc-link"><i class="fab fa-github"></i></a>
+          <a href="mailto:satishmis9199@gmail.com" class="soc-link"><i class="fas fa-envelope"></i></a>
+          <a href="https://leetcode.com" target="_blank" class="soc-link"><i class="fas fa-code"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right" style="--d:0.3s">
+        <div class="code-card">
+          <div class="code-header">
+            <div class="code-dots"><span class="d r"></span><span class="d y"></span><span class="d g"></span></div>
+            <span class="code-fname">Developer.java</span>
           </div>
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
-            <div>
-              <div class="contact-item-label">Phone</div>
-              <div class="contact-item-value">+91-9229299776</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <div class="contact-item-label">Location</div>
-              <div class="contact-item-value">Bangalore, Karnataka</div>
-            </div>
+          <pre class="code-body"><span class="ck">public class</span> <span class="cc">Developer</span> {
+
+  <span class="ck">String</span> name  = <span class="cs">"Satish Kumar Mishra"</span>;
+  <span class="ck">String</span> role  = <span class="cs">"Java Backend Dev"</span>;
+  <span class="ck">String</span> team  = <span class="cs">"TCS"</span>;
+  <span class="ck">int</span>    exp   = <span class="cn">2</span>; <span class="cm">// years</span>
+
+  <span class="ca">@Stack</span> <span class="ck">String</span>[] skills = {
+    <span class="cs">"Java 8+"</span>, <span class="cs">"Spring Boot"</span>,
+    <span class="cs">"Kafka"</span>,  <span class="cs">"Redis"</span>,
+    <span class="cs">"AWS"</span>,    <span class="cs">"MySQL"</span>
+  };
+
+  <span class="ck">String</span> passion() {
+    <span class="ck">return</span> <span class="cs">"Scale everything 🚀"</span>;
+  }
+}</pre>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hstat"><span class="hstat-n">40%</span><span class="hstat-l">Latency Reduced</span></div>
+          <div class="hstat"><span class="hstat-n">2+</span><span class="hstat-l">Years Exp.</span></div>
+          <div class="hstat"><span class="hstat-n">30%</span><span class="hstat-l">Perf. Gained</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">02. about</span>
+        <h2 class="sec-title">Who I <em>Am</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-img-col">
+          <div class="about-img-wrap">
+            <img src="https://erp.psit.ac.in/assets/img/Simages/28763.jpg" alt="Satish Kumar Mishra" />
+            <div class="img-border-anim"></div>
+            <div class="img-badge-fl"><i class="fab fa-java"></i> Java Dev</div>
           </div>
         </div>
-        <div class="contact-socials">
-          <a href="https://github.com/satishmis9199" target="_blank" class="csocial-btn">
-            <i class="fa-brands fa-github"></i> GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/satish-kumar-mishra-9913a2232" target="_blank" class="csocial-btn">
-            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-          </a>
-          <a href="https://socialhub-jjy2.onrender.com/user/dashboard" target="_blank" class="csocial-btn">
-            <i class="fa-solid fa-globe"></i> SocialHub
+        <div class="about-txt-col">
+          <h3 class="about-h3">Crafting backends that <span class="hl">scale.</span></h3>
+          <p>I'm a Software Engineer based in <strong>Bangalore, Karnataka</strong>, specializing in Java backend development and cloud architectures. With 2+ years of professional experience at TCS and Turing Platform, I've built systems that handle real production traffic.</p>
+          <p>I love architecting Kafka event-driven pipelines, optimizing database queries, and making APIs faster with Redis. I'm also deeply interested in system design and AI-assisted development.</p>
+          <div class="about-counters">
+            <div class="ac"><span class="ac-n" data-target="2">0</span><sup>+</sup><span class="ac-l">Years Exp.</span></div>
+            <div class="ac-sep"></div>
+            <div class="ac"><span class="ac-n" data-target="40">0</span><sup>%</sup><span class="ac-l">Latency Cut</span></div>
+            <div class="ac-sep"></div>
+            <div class="ac"><span class="ac-n" data-target="30">0</span><sup>%</sup><span class="ac-l">Perf. Gain</span></div>
+          </div>
+          <div class="about-info-grid">
+            <div class="ai-item"><i class="fas fa-graduation-cap"></i><div><b>Education</b><span>B.Tech ECE — PSIT · 2020–2024 · CGPA: 7.6</span></div></div>
+            <div class="ai-item"><i class="fas fa-map-marker-alt"></i><div><b>Location</b><span>Bangalore, Karnataka</span></div></div>
+            <div class="ai-item"><i class="fas fa-envelope"></i><div><b>Email</b><span>satishmis9199@gmail.com</span></div></div>
+            <div class="ai-item"><i class="fas fa-phone"></i><div><b>Phone</b><span>+91-9229299776</span></div></div>
+          </div>
+          <a href="https://drive.google.com/file/d/1_c_DnTHLIu3gbJkiB-MDBI1jEvQvnGKM/view" target="_blank" class="btn btn-primary">
+            <span>Download Resume</span><i class="fas fa-file-pdf"></i>
           </a>
         </div>
       </div>
-      <div class="contact-right reveal-right">
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" placeholder="Your name" required />
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section exp-bg" id="experience">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">03. experience</span>
+        <h2 class="sec-title">Work <em>History</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-circle"><span></span></div>
+            <div class="tl-vline"></div>
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="your@email.com" required />
+          <div class="tl-card">
+            <div class="tl-card-top">
+              <div>
+                <h3>Java Backend Developer</h3>
+                <span class="tl-co"><i class="fas fa-building"></i> TCS — Tata Consultancy Services</span>
+              </div>
+              <div class="tl-right-meta">
+                <span class="tl-date">Jun 2025 – Present</span>
+                <span class="badge-current">Current</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Designed and developed scalable microservices using <strong>Java, Spring Boot</strong> and REST APIs</li>
+              <li>Built high-performance APIs handling concurrent users and large-scale data processing</li>
+              <li>Implemented <strong>Kafka event-driven architecture</strong> for asynchronous workflows</li>
+              <li>Integrated <strong>Redis caching</strong> — reduced API latency by <span class="hl">40%</span></li>
+              <li>Optimized SQL queries, joins, and indexing improving database performance</li>
+              <li>Handled production issues daily — RCA, log analysis, incident resolution</li>
+              <li>Deployed and monitored apps using <strong>AWS services</strong> ensuring high availability</li>
+            </ul>
+            <div class="tl-techs">
+              <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>Redis</span><span>AWS</span><span>REST APIs</span><span>Microservices</span>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-circle"><span></span></div>
+            <div class="tl-vline"></div>
           </div>
-          <button type="submit" class="form-submit">
-            Send Message <i class="fa-solid fa-paper-plane"></i>
+          <div class="tl-card">
+            <div class="tl-card-top">
+              <div>
+                <h3>Backend Developer Intern</h3>
+                <span class="tl-co"><i class="fas fa-laptop-code"></i> Freelance — Turing Platform</span>
+              </div>
+              <div class="tl-right-meta">
+                <span class="tl-date">Sep 2023 – May 2025</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Developed Order Management System using <strong>Spring Boot microservices</strong></li>
+              <li>Built REST APIs for order processing, inventory and user management</li>
+              <li>Implemented <strong>JWT-based authentication</strong> using Spring Security</li>
+              <li>Integrated MySQL with JPA/Hibernate and optimized queries</li>
+              <li>Used Apache Kafka for inter-service communication improving scalability</li>
+              <li>Improved API performance by <span class="hl">30%</span> using caching &amp; query optimization</li>
+              <li>Collaborated in remote teams delivering scalable backend solutions</li>
+            </ul>
+            <div class="tl-techs">
+              <span>Spring Boot</span><span>JWT</span><span>MySQL</span><span>JPA</span><span>Hibernate</span><span>Kafka</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">04. skills</span>
+        <h2 class="sec-title">Technical <em>Arsenal</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="skills-layout">
+        <div class="skill-cats-grid">
+
+          <div class="scat"><div class="scat-icon"><i class="fab fa-java"></i></div><h4>Languages</h4><div class="pills"><span class="pill p">Java 8+</span><span class="pill">SQL</span><span class="pill">Python</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-cubes"></i></div><h4>Backend</h4><div class="pills"><span class="pill p">Spring Boot</span><span class="pill p">Microservices</span><span class="pill">REST APIs</span><span class="pill">Hibernate</span><span class="pill">JPA</span><span class="pill">Spring Security</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fab fa-aws"></i></div><h4>Cloud &amp; DevOps</h4><div class="pills"><span class="pill p">AWS (S3, EC2, IAM)</span><span class="pill">Docker</span><span class="pill">Jenkins CI/CD</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-stream"></i></div><h4>Messaging &amp; Cache</h4><div class="pills"><span class="pill p">Apache Kafka</span><span class="pill p">Redis</span><span class="pill">Event-Driven Arch.</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-database"></i></div><h4>Databases</h4><div class="pills"><span class="pill p">MySQL</span><span class="pill">SQL Server</span><span class="pill">Query Optimization</span><span class="pill">Indexing</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-headset"></i></div><h4>Support &amp; Ops</h4><div class="pills"><span class="pill p">L1/L2 Production Support</span><span class="pill">RCA</span><span class="pill">Log Analysis</span><span class="pill">Incident Mgmt.</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-brain"></i></div><h4>Concepts</h4><div class="pills"><span class="pill">OOP</span><span class="pill">Multithreading</span><span class="pill">System Design (HLD/LLD)</span><span class="pill">Distributed Systems</span><span class="pill">Scalability</span></div></div>
+
+          <div class="scat"><div class="scat-icon"><i class="fas fa-tools"></i></div><h4>Tools &amp; AI</h4><div class="pills"><span class="pill">Git</span><span class="pill">Maven</span><span class="pill">Postman</span><span class="pill">IntelliJ IDEA</span><span class="pill">ChatGPT</span><span class="pill">GitHub Copilot</span></div></div>
+
+        </div>
+
+        <div class="skill-bars-col">
+          <h4 class="bars-h">Proficiency</h4>
+
+          <div class="sbar"><div class="sbar-top"><span><i class="fab fa-java"></i> Java / Spring Boot</span><span>92%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="92"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fas fa-stream"></i> Apache Kafka</span><span>85%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="85"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fas fa-shield-alt"></i> Spring Security / JWT</span><span>80%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="80"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fas fa-database"></i> MySQL / Query Optimization</span><span>82%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="82"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fas fa-memory"></i> Redis / Caching</span><span>78%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="78"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fab fa-aws"></i> AWS Services</span><span>75%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="75"></div></div></div>
+          <div class="sbar"><div class="sbar-top"><span><i class="fas fa-network-wired"></i> System Design (HLD/LLD)</span><span>70%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="70"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section exp-bg" id="projects">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">05. projects</span>
+        <h2 class="sec-title">What I've <em>Built</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card featured">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+          </div>
+          <span class="proj-num">01</span>
+          <h3>E-Commerce Backend System</h3>
+          <p>Scalable backend with product catalog, cart &amp; order services. JWT-secured authentication with role-based access control and Spring transactions for data consistency.</p>
+          <div class="proj-techs"><span>Spring Boot</span><span>REST APIs</span><span>MySQL</span><span>JWT</span><span>Spring Security</span></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+          </div>
+          <span class="proj-num">02</span>
+          <h3>Real-Time Notification System</h3>
+          <p>Kafka-based notification pipeline with high scalability and fault tolerance using event-driven architecture. Decoupled services via topic-based pub-sub model.</p>
+          <div class="proj-techs"><span>Apache Kafka</span><span>Java</span><span>Spring Boot</span><span>Event-Driven</span></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a></div>
+          </div>
+          <span class="proj-num">03</span>
+          <h3>Order Management System</h3>
+          <p>Full-featured OMS covering order lifecycle, inventory, user management and payments. 30% performance improvement via caching &amp; optimized JPA queries.</p>
+          <div class="proj-techs"><span>Microservices</span><span>JPA/Hibernate</span><span>MySQL</span><span>Kafka</span></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a></div>
+          </div>
+          <span class="proj-num">04</span>
+          <h3>Vehicle Theft Detection</h3>
+          <p>IoT system detecting vehicle theft and automatically sending SMS alerts to the owner. Owner can remotely disable ignition via reply SMS command.</p>
+          <div class="proj-techs"><span>IoT</span><span>Embedded C</span><span>GSM Module</span><span>Sensors</span></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a></div>
+          </div>
+          <span class="proj-num">05</span>
+          <h3>Gesture Control Wheelchair</h3>
+          <p>Wheelchair controlled via hand gestures using an accelerometer. Transmitter worn on hand sends real-time orientation signals to control direction and speed.</p>
+          <div class="proj-techs"><span>Arduino</span><span>Accelerometer</span><span>RF Module</span><span>Embedded C</span></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top-row">
+            <div class="proj-folder"><i class="fas fa-folder-open"></i></div>
+            <div class="proj-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+          </div>
+          <span class="proj-num">06</span>
+          <h3>Drum Kit Web App</h3>
+          <p>Interactive virtual drum set with keyboard input mapping. Visual feedback on keypress, custom drum sounds for each key using the Web Audio API.</p>
+          <div class="proj-techs"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Web Audio API</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS ===== -->
+  <section class="section certs-section">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">06. certifications</span>
+        <h2 class="sec-title">Credentials &amp; <em>Learning</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card"><div class="cert-ico"><i class="fas fa-award"></i></div><h4>Spring Boot &amp; Microservices</h4><p>Advanced microservices architecture patterns &amp; best practices</p></div>
+        <div class="cert-card"><div class="cert-ico"><i class="fas fa-drafting-compass"></i></div><h4>System Design</h4><p>HLD &amp; LLD for distributed systems at scale</p></div>
+        <div class="cert-card"><div class="cert-ico"><i class="fab fa-java"></i></div><h4>Java Certification</h4><p>Core Java with OOP, multithreading &amp; collections</p></div>
+        <div class="cert-card"><div class="cert-ico"><i class="fab fa-aws"></i></div><h4>AWS Fundamentals</h4><p>Cloud infrastructure, S3, EC2, IAM &amp; core services</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">07. contact</span>
+        <h2 class="sec-title">Get In <em>Touch</em></h2>
+        <div class="sec-line"></div>
+      </div>
+      <p class="contact-intro">I'm currently <strong>open to new opportunities</strong>. Whether you have a project, a question, or just want to say hi — my inbox is always open. Let's build something great together.</p>
+
+      <div class="contact-layout">
+        <div class="contact-info-card">
+          <h4>Contact Info</h4>
+          <a href="mailto:satishmis9199@gmail.com" class="ci-row"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div><span>Email</span><strong>satishmis9199@gmail.com</strong></div></a>
+          <a href="tel:+919229299776" class="ci-row"><div class="ci-icon"><i class="fas fa-phone"></i></div><div><span>Phone</span><strong>+91-9229299776</strong></div></a>
+          <div class="ci-row"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><span>Location</span><strong>Bangalore, Karnataka, India</strong></div></div>
+          <div class="ci-row"><div class="ci-icon"><i class="fas fa-graduation-cap"></i></div><div><span>Education</span><strong>B.Tech ECE — PSIT, CGPA: 7.6</strong></div></div>
+          <div class="ci-socials">
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://github.com/satishmis9199" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://leetcode.com" target="_blank"><i class="fas fa-code"></i> LeetCode</a>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formspree.io/f/meqbkbkp" method="POST" id="contactForm">
+          <div class="form-row-2">
+            <div class="form-field"><label>Full Name</label><input type="text" name="name" placeholder="John Doe" required /><span class="fline"></span></div>
+            <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required /><span class="fline"></span></div>
+          </div>
+          <div class="form-field"><label>Subject</label><input type="text" name="subject" placeholder="Job Opportunity / Project Collaboration" /><span class="fline"></span></div>
+          <div class="form-field"><label>Message</label><textarea name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea><span class="fline"></span></div>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
           </button>
-          <div class="form-note">Or email directly at satishmis9199@gmail.com</div>
+          <p class="form-success" id="formSuccess">✅ Message sent! I'll get back to you soon.</p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">S<span>.</span></div>
-      <p class="footer-copy">© 2025 Satish Kumar Mishra. Built with 💜 &amp; lots of Java.</p>
+      <a href="#home" class="footer-logo"><span class="logo-bracket">&lt;</span>SKM<span class="logo-bracket">/&gt;</span></a>
       <div class="footer-links">
-        <a href="https://github.com/satishmis9199" target="_blank"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/satish-kumar-mishra-9913a2232" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#home">Home</a><a href="#about">About</a><a href="#experience">Experience</a>
+        <a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
       </div>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/satishmis9199" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:satishmis9199@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://leetcode.com" target="_blank"><i class="fas fa-code"></i></a>
+      </div>
+      <p class="footer-copy">Designed &amp; Developed with <span class="heart">♥</span> by <strong>Satish Kumar Mishra</strong> · © 2025</p>
     </div>
   </footer>
 
+  <!-- Scroll To Top -->
+  <button class="scroll-top-btn" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <script src="script.js"></script>
 </body>
-  </html>
+</html>
